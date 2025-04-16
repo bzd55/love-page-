@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>给你的一封情书</title>
+  <link href="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/css/lightbox.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    .gallery-title {
+      font-size: 2em;
+      margin-top: 50px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .photo-grid img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="star-bg"></canvas>
+<style>
+  #star-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: black;
+  }
+</style>
+<script>
+  const canvas = document.getElementById('star-bg');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function initStars() {
+    stars = [];
+    const w = canvas.width = window.innerWidth;
+    const h = canvas.height = window.innerHeight;
+    for (let i = 0; i < 200; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.5 + 0.5,
+        d: Math.random() * 0.5
+      });
+    }
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'white';
+    for (let i = 0; i < stars.length; i++) {
+      const s = stars[i];
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    moveStars();
+  }
+
+  function moveStars() {
+    for (let i = 0; i < stars.length; i++) {
+      stars[i].y += stars[i].d;
+      if (stars[i].y > canvas.height) {
+        stars[i].y = 0;
+        stars[i].x = Math.random() * canvas.width;
+      }
+    }
+  }
+
+  function animate() {
+    drawStars();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', initStars);
+  initStars();
+  animate();
+</script>
+
+
+<audio id="bg-music" src="summer.mp3" autoplay loop></audio>
+<script>
+  // 尝试自动播放音乐
+  document.addEventListener('DOMContentLoaded', function() {
+    var music = document.getElementById("bg-music");
+    var playPromise = music.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(function(error) {
+        // 浏览器阻止了自动播放，用户点击后再播放
+        document.body.addEventListener('click', function () {
+          music.play();
+        }, { once: true });
+      });
+    }
+  });
+</script>
+
+  <h1>给你的一封情书</h1>
+
+<style>
+  .typewriter-container {
+    margin-top: 60px;
+  }
+  .typewriter {
+    display: inline-block;
+    font-size: 24px;
+    font-family: 'Courier New', monospace;
+    color: #ffcc99;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 4s steps(30, end) forwards, blink .75s step-end infinite;
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  @keyframes blink {
+    from, to { border-color: transparent; }
+    50% { border-color: orange; }
+  }
+</style>
+
+<div class="typewriter-container">
+  <div class="typewriter">在最美的年纪，遇见最好的你。</div>
+</div>
+
+  <p>在最美的年纪，遇见最好的你。</p>
+
+  <div class="gallery-title">我们的回忆</div>
+  <div class="photo-grid">
+    <a href="images/photo1.jpeg" data-lightbox="gallery"><img src="images/photo1.jpeg" alt="photo1.jpeg"></a>
+<a href="images/photo2.jpeg" data-lightbox="gallery"><img src="images/photo2.jpeg" alt="photo2.jpeg"></a>
+<a href="images/photo3.jpeg" data-lightbox="gallery"><img src="images/photo3.jpeg" alt="photo3.jpeg"></a>
+<a href="images/photo4.jpeg" data-lightbox="gallery"><img src="images/photo4.jpeg" alt="photo4.jpeg"></a>
+<a href="images/photo5.jpeg" data-lightbox="gallery"><img src="images/photo5.jpeg" alt="photo5.jpeg"></a>
+<a href="images/photo6.jpeg" data-lightbox="gallery"><img src="images/photo6.jpeg" alt="photo6.jpeg"></a>
+<a href="images/photo7.jpeg" data-lightbox="gallery"><img src="images/photo7.jpeg" alt="photo7.jpeg"></a>
+<a href="images/photo8.jpeg" data-lightbox="gallery"><img src="images/photo8.jpeg" alt="photo8.jpeg"></a>
+<a href="images/photo9.jpeg" data-lightbox="gallery"><img src="images/photo9.jpeg" alt="photo9.jpeg"></a>
+<a href="images/photo10.jpeg" data-lightbox="gallery"><img src="images/photo10.jpeg" alt="photo10.jpeg"></a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/lightbox2@2/dist/js/lightbox-plus-jquery.min.js"></script>
+</body>
+</html>
